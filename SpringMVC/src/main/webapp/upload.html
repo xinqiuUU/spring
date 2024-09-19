@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <!-- 引入 Vue.js -->
+    <script src="js/vue.js"></script>
+    <!-- 引入 Axios 用于 HTTP 请求 -->
+    <script src="js/axios.js"></script>
+</head>
+<body>
+<div id="app">
+    <form @submit.prevent="submitForm" enctype="multipart/form-data">
+        <label for="username">用户名:</label>
+        <input type="text" id="username" v-model="username" required><br><br>
+
+        <label for="password">密码:</label>
+        <input type="password" id="password" v-model="password" required><br><br>
+
+        <label for="avatar">头像上传:</label>
+        <input type="file" id="avatar" @change="handleFileUpload" required><br><br>
+
+        <input type="submit" value="注册">
+    </form>
+    <p v-if="message">{{ message }}</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            username: '',
+            password: '',
+            avatar: null,
+            message: ''
+        },
+        methods: {
+            handleFileUpload(event) {
+                this.avatar = event.target.files[0];
+            },
+            submitForm() {
+                let formData = new FormData();
+                formData.append('username', this.username);
+                formData.append('pwd', this.password);
+                formData.append('avatar', this.avatar);
+
+                axios.post('/SpringMVC_war_exploded/file/doUpload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                })
+                    .then(response => {
+                        this.message = response.data;
+                    })
+                    .catch(error => {
+                        console.error(error);
+                        this.message = '用户注册失败';
+                    });
+            }
+        }
+    });
+</script>
+</body>
+</html>

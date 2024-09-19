@@ -1,0 +1,184 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>org.example</groupId>
+  <artifactId>spring</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>spring</name>
+  <url>http://maven.apache.org</url>
+  <modules>
+    <module>baseSpring</module>
+      <module>Aop</module>
+      <module>Aop2_configuration</module>
+      <module>baseAop_tx</module>
+      <module>baseSpring_web</module>
+      <module>baseSpring_web_jms_consumer</module>
+      <module>SpringMVC</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+<!--  在父项目的 dependencies中直接写的jar包 ， 所以子模块都会有 -->
+  <dependencies>
+
+  </dependencies>
+
+<!--   dependencyManagement约定是 Maven 项目对象模型（POM）中的一个元素，用于集中管理项目依赖项的版本。
+          它通常在父 POM 或父模块中定义，然后可以在子模块中引用而无需显式指定版本号。
+          这种方式确保了所有子模块使用相同的依赖版本，简化了版本管理，并减少了潜在的版本冲突  -->
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- logback日志框架 -->
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-core</artifactId>
+        <version>1.4.11</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>1.4.11</version>
+      </dependency>
+
+      <!--      Jackson 是一个用于处理 JSON 数据的 Java 库，jackson-databind 模块提供了将 Java 对象与 JSON 数据相互转换的功能-->
+      <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.15.3</version>
+      </dependency>
+
+      <!-- Spring Web MVC -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-webmvc</artifactId>
+        <version>5.3.24</version>
+      </dependency>
+      <!-- Spring Core -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-core</artifactId>
+        <version>5.3.24</version>
+      </dependency>
+      <!-- Servlet API (provided scope) -->
+      <dependency>
+        <groupId>javax.servlet</groupId>
+        <artifactId>javax.servlet-api</artifactId>
+        <version>4.0.1</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!--Quartz 是一个强大的开源任务调度框架，用于在 Java 应用中安排和执行定时任务、周期性任务以及各种复杂的调度规则-->
+      <dependency>
+        <groupId>org.quartz-scheduler</groupId>
+        <artifactId>quartz</artifactId>
+        <version>2.3.2</version>
+      </dependency>
+      <!--Spring 上下文的扩展支持，可能包括与各种外部技术的集成支持，如缓存、邮件发送、任务调度等-->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context-support</artifactId>
+        <version>5.3.24</version>
+      </dependency>
+
+      <!-- SLF4J 日志框架 -->
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-api</artifactId>
+        <version>1.7.30</version>
+      </dependency>
+      <dependency>
+        <groupId>org.slf4j</groupId>
+        <artifactId>slf4j-simple</artifactId>
+        <version>1.7.30</version>
+      </dependency>
+      <!-- 事务管理器和事务注解支持  -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-tx</artifactId>
+        <version>5.3.24</version>
+      </dependency>
+
+  <!--spring-context 模块是 Spring 的核心容器模块，提供了 Spring 应用上下文（ApplicationContext）的实现，
+  支持 IoC（Inversion of Control）容器和 DI（Dependency Injection）容器的管理-->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-context</artifactId>
+        <version>5.3.24</version>
+      </dependency>
+
+      <!--JUnit 4 测试框架-->
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.13.2</version>
+        <scope>test</scope>
+      </dependency>
+
+      <!--@Data-->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>1.18.34</version>
+      </dependency>
+
+<!--    Java 日志框架  -->
+      <dependency>
+        <groupId>log4j</groupId>
+        <artifactId>log4j</artifactId>
+        <version>1.2.17</version>
+      </dependency>
+
+<!--      将 Java 对象转换为 JSON 格式（序列化）以及从 JSON 格式转换为 Java 对象（反序列化）-->
+      <dependency>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.9.0</version>
+      </dependency>
+
+      <!--  mysql 8.0    -->
+      <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>8.0.33</version>
+      </dependency>
+
+      <!--   数据库 增删改查   -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-jdbc</artifactId>
+        <version>5.3.24</version>
+      </dependency>
+
+      <!--      Druid 是一个开源的数据库连接池和监控平台，由阿里巴巴开发和维护。
+      它提供了高性能、高可靠性、透明化的数据库连接池功能，支持监控和统计数据库访问性能-->
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>druid</artifactId>
+        <version>1.2.23</version>
+      </dependency>
+
+      <!-- spring AOP的支持包  aspectJ  -->
+      <dependency>
+        <groupId>org.aspectj</groupId>
+        <artifactId>aspectjweaver</artifactId>
+        <version>1.9.19</version>
+      </dependency>
+
+      <!--  测试 依赖    -->
+      <dependency>
+        <groupId>org.springframework</groupId>
+        <artifactId>spring-test</artifactId>
+        <version>5.3.24</version>
+      </dependency>
+
+
+    </dependencies>
+  </dependencyManagement>
+
+</project>

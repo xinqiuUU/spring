@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.example</groupId>
+        <artifactId>spring</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
+    <!-- 因为此模块继承 自 spring 所以它也在  groupId 下  -->
+    <artifactId>baseSpring</artifactId>
+    <packaging>jar</packaging>
+
+    <name>baseSpring</name>
+    <url>http://maven.apache.org</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <!--    用的是父模块的版本         -->
+    <dependencies>
+
+        <!--   Apache 的日志核心库     -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>2.17.1</version> <!-- 根据需要选择合适的版本 -->
+        </dependency>
+        <!-- Spring Core 和 Spring JMS 相关依赖 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jms</artifactId>
+            <version>5.3.24</version> <!-- 版本号根据你的实际需求和Spring版本进行调整 -->
+        </dependency>
+        <!-- ActiveMQ 相关依赖 -->
+        <dependency>
+            <groupId>org.apache.activemq</groupId>
+            <artifactId>activemq-all</artifactId>
+            <version>5.18.5</version> <!-- 版本号根据你的实际需求和ActiveMQ版本进行调整 -->
+        </dependency>
+
+
+        <!--     发送邮箱的依赖   -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        <!--        提供依赖注入的核心接口和注解-->
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
+
+
+        <!--Quartz 是一个强大的开源任务调度框架，用于在 Java 应用中安排和执行定时任务、周期性任务以及各种复杂的调度规则-->
+        <dependency>
+            <groupId>org.quartz-scheduler</groupId>
+            <artifactId>quartz</artifactId>
+        </dependency>
+        <!--Spring 上下文的扩展支持，可能包括与各种外部技术的集成支持，如缓存、邮件发送、任务调度等-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+        </dependency>
+        <!--spring-context 模块是 Spring 的核心容器模块，提供了 Spring 应用上下文（ApplicationContext）的实现，
+支持 IoC（Inversion of Control）容器和 DI（Dependency Injection）容器的管理-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+        </dependency>
+
+        <!--  SLF4J 日志框架 -->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+        </dependency>
+        <!-- 事务管理器和事务注解支持 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+        </dependency>
+
+        <!--JUnit 4 测试框架-->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <!--    用的是父模块的版本         -->
+            <!--<version>4.13.2</version>-->
+            <scope>test</scope>
+        </dependency>
+
+        <!--    Java 日志框架  -->
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+        </dependency>
+
+        <!--@Data-->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+        </dependency>
+
+        <!--    mysql 8.0      -->
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+        </dependency>
+
+        <!--      Druid 是一个开源的数据库连接池和监控平台，由阿里巴巴开发和维护。
+      它提供了高性能、高可靠性、透明化的数据库连接池功能，支持监控和统计数据库访问性能-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-annotations-api</artifactId>
+            <version>9.0.80</version>
+        </dependency>
+
+    </dependencies>
+
+</project>

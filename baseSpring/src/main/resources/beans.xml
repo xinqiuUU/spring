@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!--  由spring自动调用  Address的无参构造方法创建对象 再将这个对象以Map形式存好  -->
+    <bean id="addr" class="com.yc.ioc.bean1.Address">
+        <!-- collaborators and configuration for this bean go here -->
+        <!--  Di 依赖注入  基本数据类型  通过setXxx完成注入    -->
+        <property name="province" value="湖南"/>
+        <property name="city" value="衡阳"/>
+        <property name="district" value="珠晖"/>
+    </bean>
+
+    <!--  ioc   -->
+    <bean id="student" class="com.yc.ioc.bean1.Student">
+        <!-- di  -->
+        <property name="name" value="张三"/>
+        <property name="id" value="20"/>
+        <!-- 注意: 引用类型  引用地址  这里的address属性是引用了上面的  addr对象  所以用ref注解 不用value   -->
+        <property name="address" ref="addr"/>
+    </bean>
+
+
+    <!-- more bean definitions go here -->
+
+</beans>

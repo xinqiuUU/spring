@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="js/axios.js"></script>
+    <script src="js/vue.js"></script>
+
+</head>
+<body>
+<div id="app">
+
+    <input placeholder="账户" v-model="accountId" @blur="showEmail"> 账户  <br>
+    <input placeholder="余额" v-model="money">       余额 <br>
+    <input placeholder="转入账户" v-model="toAccountId"> 转入账户<br>
+    <p></p>
+
+    <button @click="openAccount">开户</button>
+    <button @click="queryAccount">查询</button>
+    <button @click="deposite">存款</button>
+    <button @click="withdraw"> 取款</button>
+    <button @click="transfer">转账</button>
+
+    <p>账户:{{account.accountid}}</p>
+    <p>余额:{{account.balance}}</p>
+    <p>邮箱:{{account.email}}</p>
+</div>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            accountId: '',
+            money: '',
+            toAccountId: '',
+            account: {accountId: '', balance: '', email: '',}, // 初始化
+        }, methods: {
+            showEmail() {
+                var params = new URLSearchParams();
+                params.append("accountId", this.accountId);
+                axios.post('account.action?op=findAccount', params)
+                    .then(result => {
+                        let jm = result.data;
+                        if (jm.code === 1) {
+                            this.account.email = jm.obj.email;
+                        }
+                    });
+            },
+            // 开户
+            openAccount() {
+                var params = new URLSearchParams();
+                params.append("money", this.money);
+                axios.post('account.action?op=openAccount', params)
+                    .then(result => {
+                        let jm = result.data;
+                        if (jm.code === 1) {
+                            this.account = jm.obj;
+
+                        }
+                    });
+            },
+            // 查询
+            queryAccount() {
+                var params = new URLSearchParams();
+                params.append("accountId", this.accountId);
+                axios.post('account.action?op=findAccount', params)
+                    .then(result => {
+                        let jm = result.data;
+                        if (jm.code === 1) {
+                            this.account = jm.obj;
+                        }
+                    });
+            },
+            // 存款
+            deposite() {
+                var params = new URLSearchParams();
+                params.append("accountId", this.accountId);
+                params.append("money", this.money);
+                axios.post('account.action?op=deposit', params)
+                    .then(result => {
+                        let jm = result.data;
+                        if (jm.code === 1) {
+                            this.account = jm.obj;
+                        }
+                    });
+            },
+            // 取款
+            withdraw() {
+                var params = new URLSearchParams();
+                params.append("accountId", this.accountId);
+                params.append("money", this.money);
+                axios.post('account.action?op=withdraw', params)
+                    .then(result => {
+                        let jm = result.data;
+                        if (jm.code === 1) {
+                            this.account = jm.obj;
+                        }
+                    });
+            },
+            // 转账
+            transfer() {
+                var params = new URLSearchParams();
+                params.append("fromId", this.accountId);
+                params.append("money", this.money);
+                params.append("toId", this.toAccountId);
+                axios.post('account.action?op=transfer', params)
+                    .then(result => {
+                        let jm = result.data;
+                        if (jm.code === 1) {
+                            this.account = jm.obj;
+                        }
+                    });
+            },
+
+        },
+    })
+</script>
+</body>
+</html>
